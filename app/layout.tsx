@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Inter } from 'next/font/google';
-import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
 
 const bitte = localFont({ src: './bitte.woff2' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: 'Pringles',
   description: '...',
 };
@@ -20,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body
-        className={`${bitte.className} bg-pringles-dark-red text-white flex min-h-screen items-center justify-center`}
+        className={`${bitte.className} flex min-h-screen items-center justify-center bg-pringles-dark-red text-white`}
       >
         {children}
       </body>
