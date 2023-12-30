@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import Header from '@/components/Header';
 import './globals.css';
 
 const bitte = localFont({ src: './bitte.woff2' });
@@ -19,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body
-        className={`${bitte.className} flex min-h-screen items-center justify-center bg-pringles-dark-red text-white`}
+        className={`${bitte.className} bg-hero-texture-mobile lg:bg-hero-texture bg-top-1 xl:bg-top-2 bg-100% min-h-screen min-w-[320px] bg-pringles-red bg-no-repeat text-white`}
       >
+        <Header />
         {children}
       </body>
     </html>

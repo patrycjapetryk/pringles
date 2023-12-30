@@ -1,17 +1,15 @@
-import Image from 'next/image';
+import Awards from '@/components/Awards';
+import Competition from '@/components/Competition';
+import HowTo from '@/components/HowTo';
+import PageHeader from '@/components/PageHeader';
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="bg-pringles-red flex min-h-[250px] flex-col items-center justify-center gap-10 px-24">
-      <Image
-        className="relative"
-        src="/images/logo.svg"
-        alt="Logo Kampanii"
-        width={180}
-        height={37}
-        priority
-      />
-      <h1 className="text-sm">Odkryj zimową zabawę z Pringles</h1>
+    <main className="flex w-full flex-col items-center">
+      <PageHeader />
+      <HowTo />
+      <Awards />
+      <Competition />
     </main>
   );
 }
