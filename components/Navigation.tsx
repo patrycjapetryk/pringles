@@ -14,12 +14,12 @@ export default function Navigation({
         isOpen
           ? 'animate-slidein fixed left-0 top-0 flex w-full flex-col gap-8 bg-pringles-dark-red py-16'
           : 'hidden'
-      }  z-10 py-0 lg:relative lg:flex lg:w-auto lg:gap-0 lg:bg-transparent`}
+      }  z-10 lg:relative lg:flex lg:w-auto lg:translate-y-0 lg:animate-none lg:flex-row lg:gap-0 lg:bg-transparent lg:py-0`}
     >
       <ul
         className={`${
-          isOpen ? 'flex-col gap-8  text-xl' : ''
-        } flex w-full items-center justify-center gap-20 text-base lg:mr-6 lg:flex-row xl:mr-20`}
+          isOpen ? 'flex-col gap-8 text-xl' : ''
+        } flex w-full items-center justify-center lg:mr-6 lg:flex-row lg:gap-20 lg:text-base xl:mr-20`}
       >
         <li className="uppercase">
           <Link href="#">ZASADY</Link>
