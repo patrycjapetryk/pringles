@@ -22,16 +22,24 @@ export default function Navigation({
         } flex w-full items-center justify-center lg:mr-6 lg:flex-row lg:gap-20 lg:text-base xl:mr-20`}
       >
         <li className="uppercase">
-          <Link href="#">ZASADY</Link>
+          <a onClick={handleClick} href="#zasady">
+            ZASADY
+          </a>
         </li>
         <li className="uppercase">
-          <Link href="">NAGRODY</Link>
+          <a onClick={handleClick} href="#nagrody">
+            NAGRODY
+          </a>
         </li>
         <li className="uppercase">
-          <Link href="">REGULAMIN</Link>
+          <Link onClick={handleClick} href="#">
+            REGULAMIN
+          </Link>
         </li>
         <li className="uppercase">
-          <Link href="">WEŹ UDZIAŁ</Link>
+          <a onClick={handleClick} href="#udzial">
+            WEŹ UDZIAŁ
+          </a>
         </li>
       </ul>
 

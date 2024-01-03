@@ -8,8 +8,9 @@ const bitte = localFont({ src: './bitte.woff2' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
-  title: 'Pringles',
-  description: '...',
+  title: 'Zimowa zabawa z Pringles',
+  description:
+    'Odkryj zimową zabawę z Pringles. Czas trwania akcji: od 09.01 do 31.01.2024',
 };
 
 export default function RootLayout({
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body
-        className={`${bitte.className} bg-hero-texture-mobile lg:bg-hero-texture bg-top-1 xl:bg-top-2 bg-100% min-h-screen min-w-[320px] bg-pringles-red bg-no-repeat text-white`}
+        className={`${bitte.className} min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-top-1 bg-no-repeat text-white lg:bg-hero-texture xl:bg-top-2`}
       >
         <Header />
         {children}

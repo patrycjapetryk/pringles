@@ -13,8 +13,6 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
 
-  console.log(isOpen);
-
   return (
     <header className="mb-10 flex w-full items-center justify-between px-3 py-4 sm:mb-20 lg:mb-10">
       <Logo />

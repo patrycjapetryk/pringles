@@ -13,6 +13,9 @@ const config: Config = {
         'pringles-dark-red': '#CF102D',
         'pringles-gray': '#b3b3b3',
       },
+      fontSize: {
+        xxs: ['0.7rem', '1rem'],
+      },
       screens: {
         xs: '400px',
       },
@@ -20,10 +23,12 @@ const config: Config = {
         'hero-texture': "url('/images/background.png')",
         'hero-texture-mobile': "url('/images/background-mobile.png')",
         'footer-texture': "url('/images/background-bottom.png')",
+        'star-input': "url('/images/star.svg')",
       },
       backgroundPosition: {
         'top-1': 'center top -11rem',
         'top-2': 'center top -18rem',
+        'right-top-5': 'right 5px top 6px',
       },
       backgroundSize: {
         '100%': '100%',
@@ -35,10 +40,11 @@ const config: Config = {
         },
       },
       animation: {
-        slidein: 'slidein 0.8s cubic-bezier(.44,.32,.92,.45)',
+        slidein: 'slidein 0.4s',
       },
     },
   },
-  plugins: [],
+
+  plugins: [require('@tailwindcss/forms')],
 };
 export default config;

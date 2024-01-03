@@ -2,7 +2,10 @@ import Image from 'next/image';
 
 export default function Awards() {
   return (
-    <section className="sm:bg-hero-texture bg-top-1 xl:bg-top-2 bg-100% flex w-full flex-col items-center bg-no-repeat">
+    <section
+      id="nagrody"
+      className="flex w-full flex-col items-center bg-100% bg-top-1 bg-no-repeat sm:bg-hero-texture xl:bg-top-2"
+    >
       <div className="flex w-full max-w-[1280px] flex-col items-center">
         <h2 className="my-8 w-2/3 text-center text-3xl sm:my-12 sm:text-4xl md:text-5xl lg:my-[5.1rem] lg:mb-[4.6rem] lg:w-1/2">
           Co na Ciebie czeka?
@@ -12,6 +15,7 @@ export default function Awards() {
           <Image
             className="relative w-full sm:mt-2 sm:w-2/3"
             src="/images/rewards-mobile.png"
+            priority
             alt="Awards"
             width={632}
             height={536}
