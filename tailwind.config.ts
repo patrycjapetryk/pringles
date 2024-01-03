@@ -45,6 +45,10 @@ const config: Config = {
     },
   },
 
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('tailwindcss'),
+    require('@tailwindcss/forms'),
+    require('autoprefixer'),
+  ],
 };
 export default config;

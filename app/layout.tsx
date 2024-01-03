@@ -7,7 +7,7 @@ import './globals.css';
 const bitte = localFont({ src: './bitte.woff2' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://pringles-lovat.vercel.app'),
   title: 'Zimowa zabawa z Pringles',
   description:
     'Odkryj zimową zabawę z Pringles. Czas trwania akcji: od 09.01 do 31.01.2024',
