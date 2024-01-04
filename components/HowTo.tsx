@@ -24,7 +24,7 @@ export default function HowTo() {
             </h3>
             <p className="text-xs xs:text-sm md:text-base lg:text-xs xl:text-sm">
               Odwiedź jeden z&nbsp;wybranych super lub&nbsp;hipermarketów sieci
-              carrefour w&nbsp;okresie między&nbsp;09-31.01.2024
+              Carrefour w&nbsp;okresie między&nbsp;09-31.01.2024
             </p>
           </li>
           <li className="flex aspect-square flex-col items-center justify-center bg-pringles-red p-6 text-center text-base shadow-[6px_6px_0px_0px] shadow-pringles-gray xs:p-4 sm:p-10 lg:p-2 xl:p-6">

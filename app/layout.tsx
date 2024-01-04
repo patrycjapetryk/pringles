@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pl">
+    <html lang="pl" className="scroll-smooth">
       <body
         className={`${bitte.className} min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-top-1 bg-no-repeat text-white lg:bg-hero-texture xl:bg-top-2`}
       >
