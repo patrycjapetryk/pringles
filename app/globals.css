@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 /* Change autocomplete styles in WebKit */
-input:focus:required:placeholder-shown {
-  background-image: url(../public/images/star.svg);
-  background-repeat: no-repeat;
-  background-position: top 5px right 5px;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover {
   border: 2px solid transparent;
@@ -22,4 +16,10 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: white;
   -webkit-box-shadow: 0 0 0px 1000px #cf102d inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+.required:focus:placeholder-shown {
+  background-image: url(../public/images/star.svg);
+  background-repeat: no-repeat;
+  background-position: top 5px right 5px;
 }

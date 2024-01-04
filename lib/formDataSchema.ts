@@ -50,6 +50,7 @@ export const FormDataSchema = z.object({
     .refine((value) => /^[1-2]{1}[09]{1}[0-9]{2}$/i.test(value), {
       message: 'Podaj prawidłowy rok urodzenia.',
     }),
+  phone: z.string().min(9, { message: 'Podaj pradwidłowy numer telefonu.' }),
   email: z.string().refine((value) => /^\S+@\S+$/i.test(value), {
     message: 'Podaj prawidłowy adres email.',
   }),

@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { FormDataSchema } from '@/lib/schema';
+import { FormDataSchema } from '@/lib/formDataSchema';
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -109,10 +109,9 @@ export default function Form() {
         <div className="relative w-full">
           <input
             type="text"
-            className="relative w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required relative w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Imię"
             {...register('name')}
-            required
           />
 
           {errors.name?.message && (
@@ -125,10 +124,9 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Nazwisko"
             {...register('surname')}
-            required
           />
 
           {errors.surname?.message && (
@@ -141,10 +139,9 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Rok urodzenia"
             {...register('birthYear')}
-            required
           />
 
           {errors.birthYear?.message && (
@@ -157,10 +154,24 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            placeholder="Numer telefonu"
+            {...register('phone')}
+          />
+
+          {errors.phone?.message && (
+            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+              {errors.phone.message}
+            </p>
+          )}
+        </div>
+
+        <div className="relative sm:col-span-2">
+          <input
+            type="text"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Mail"
             {...register('email')}
-            required
           />
 
           {errors.email?.message && (
@@ -179,10 +190,9 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Ulica"
             {...register('street')}
-            required
           />
 
           {errors.street?.message && (
@@ -210,10 +220,9 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Kod pocztowy"
             {...register('postalCode')}
-            required
           />
 
           {errors.postalCode?.message && (
@@ -226,10 +235,9 @@ export default function Form() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
+            className="required w-full border-2 border-transparent bg-pringles-dark-red text-base text-white placeholder-white focus:border-white focus:text-white focus:placeholder-white focus:ring-0"
             placeholder="Miasto"
-            {...register('city', { required: true, min: 2 })}
-            required
+            {...register('city')}
           />
 
           {errors.city?.message && (
