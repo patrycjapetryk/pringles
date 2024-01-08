@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.3",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.17",
     "cloudinary": "^1.41.1",
     "googleapis": "^130.0.0",
     "moment-timezone": "^0.5.44",

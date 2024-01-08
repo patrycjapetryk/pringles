@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     cloudinary.uploader
       .upload_stream(
         {
-          tags: ['nextjs-route-handlers-upload-sneakers'],
+          tags: ['pringles'],
           public_id: uuid,
         },
         function (error, result) {
