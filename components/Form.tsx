@@ -169,7 +169,7 @@ export default function Form() {
           />
 
           {errors.message?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.message.message}
             </p>
           )}
@@ -191,7 +191,8 @@ export default function Form() {
             type="file"
             className="absolute left-0 top-0 w-full opacity-0"
             id="billImage"
-            {...register('billImage')}
+            accept="image/png, image/jpeg"
+            // {...register('billImage')}
             onChange={handleOnFileChange}
           />
 
@@ -216,7 +217,7 @@ export default function Form() {
           />
 
           {errors.name?.message && (
-            <p className="text-centerw-full text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="text-centerw-full absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.name.message}
             </p>
           )}
@@ -246,7 +247,7 @@ export default function Form() {
           />
 
           {errors.birthYear?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.birthYear.message}
             </p>
           )}
@@ -261,7 +262,7 @@ export default function Form() {
           />
 
           {errors.phone?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.phone.message}
             </p>
           )}
@@ -276,7 +277,7 @@ export default function Form() {
           />
 
           {errors.email?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.email.message}
             </p>
           )}
@@ -296,7 +297,7 @@ export default function Form() {
           />
 
           {errors.street?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.street.message}
             </p>
           )}
@@ -311,7 +312,7 @@ export default function Form() {
           />
 
           {errors.apartament?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.apartament.message}
             </p>
           )}
@@ -326,7 +327,7 @@ export default function Form() {
           />
 
           {errors.postalCode?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.postalCode.message}
             </p>
           )}
@@ -341,7 +342,7 @@ export default function Form() {
           />
 
           {errors.city?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.city.message}
             </p>
           )}
@@ -381,7 +382,7 @@ export default function Form() {
           </div>
 
           {errors.rules?.message && (
-            <p className="text-xxs absolute -bottom-[22px] left-0 w-full">
+            <p className="absolute -bottom-[22px] left-0 w-full text-xxs">
               {errors.rules.message}
             </p>
           )}
