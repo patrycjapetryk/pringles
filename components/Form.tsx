@@ -18,6 +18,9 @@ export default function Form() {
   const [pending, setPending] = useState(false);
   const [showSubmittedPage, setShowSubmittedPage] = useState(false);
 
+  console.log('test:');
+  console.log(process.env.TEST_VARIABLE);
+
   const {
     register,
     handleSubmit,
