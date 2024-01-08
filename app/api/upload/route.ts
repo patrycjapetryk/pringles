@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     cloudinary.uploader
       .upload_stream(
         {
-          tags: ['pringles'],
+          tags: ['pringles-konkurs'],
           public_id: uuid,
         },
         function (error, result) {

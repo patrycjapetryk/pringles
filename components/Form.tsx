@@ -50,13 +50,16 @@ export default function Form() {
 
   const processForm: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
+
     const uuid = nanoid();
 
-    const fileData = new FormData();
-    if (uuid) fileData.append('uuid', uuid);
-    if (file) fileData.append('file', file);
+    if (typeof file === 'undefined') return;
 
-    const response = await fetch('/api/uploadImage', {
+    const fileData = new FormData();
+    fileData.append('uuid', uuid);
+    fileData.append('file', file);
+
+    const response = await fetch('/api/upload', {
       method: 'POST',
       body: fileData,
     });
