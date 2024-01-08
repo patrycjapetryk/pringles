@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { nanoid } from 'nanoid';
@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { FormDataSchema } from '@/lib/formDataSchema';
+import { createFile } from '@/app/actions';
 import SubmittedMessage from './SubmittedMessage';
 import Loader from './Loader';
 
@@ -48,108 +49,77 @@ export default function Form() {
     }
   }, [formState, reset]);
 
-  async function handleOnOnSubmit(e: SyntheticEvent) {
-    e.preventDefault();
-
+  const processForm: SubmitHandler<Inputs> = async (data) => {
+    setPending(true);
     const uuid = nanoid();
 
-    if (typeof file === 'undefined') return;
+    console.log(data?.billImage?.[0]);
 
-    const formData = new FormData();
-    formData.append('uuid', uuid);
-    formData.append('file', file);
+    const fileData = new FormData();
+    fileData.append('uuid', uuid);
+    const formFile = data?.billImage?.[0] as File;
+    if (file) fileData.append('file', formFile);
 
-    const response = await fetch('/api/upload', {
+    const fileUpload = await fetch('/api/upload', {
       method: 'POST',
-      body: formData,
+      body: fileData,
     });
 
-    const { results } = await response.json();
+    const cloudinaryData = await fileUpload.json();
 
-    console.log(results);
-  }
+    console.log(cloudinaryData);
 
-  // const processForm: SubmitHandler<Inputs> = async (data) => {
-  //   // setPending(true);
+    const formData = {
+      ...data,
+      uuid,
+    };
 
-  //   const uuid = nanoid();
+    const googleSheetResponse = await fetch('/api/addData', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-  //   if (typeof file === 'undefined') return;
+    const googleSheetData = await googleSheetResponse.json();
 
-  //   const fileData = new FormData();
-  //   fileData.append('uuid', uuid);
-  //   fileData.append('file', file);
+    const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-  //   const response = await fetch('/api/upload', {
-  //     method: 'POST',
-  //     body: fileData,
-  //   });
+    const addSubscribtionData = await addSubscribtionResponse.json();
 
-  //   const { results } = await response.json();
+    console.log(addSubscribtionData);
 
-  //   console.log(results);
+    // console.log(claudinaryData);
 
-  //   // const formData = {
-  //   //   ...data,
-  //   //   uuid,
-  //   // };
+    if (googleSheetData) {
+      setPending(false);
+      setShowSubmittedPage(true);
 
-  //   // const googleSheetResponse = await fetch('/api/addData', {
-  //   //   method: 'POST',
-  //   //   headers: { 'Content-Type': 'application/json' },
-  //   //   body: JSON.stringify(formData),
-  //   // });
+      setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        setFile(undefined);
+        setShowSubmittedPage(false);
+      }, 5000);
+    }
+  };
 
-  //   // const googleSheetData = await googleSheetResponse.json();
-
-  //   // const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
-  //   //   method: 'POST',
-  //   //   headers: { 'Content-Type': 'application/json' },
-  //   //   body: JSON.stringify(formData),
-  //   // });
-
-  //   // const addSubscribtionData = await addSubscribtionResponse.json();
-
-  //   // console.log(addSubscribtionData);
-
-  //   // if (googleSheetData) {
-  //   //   setPending(false);
-  //   //   setShowSubmittedPage(true);
-
-  //   //   setTimeout(() => {
-  //   //     if (typeof window !== 'undefined') {
-  //   //       window.scrollTo({ top: 0, behavior: 'instant' });
-  //   //     }
-  //   //     setFile(undefined);
-  //   //     setShowSubmittedPage(false);
-  //   //   }, 5000);
-  //   // }
-  // };
-
-  function handleOnFileChange(e: React.FormEvent<HTMLInputElement>) {
+  const handleOnFileChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement & {
       files: FileList;
     };
 
-    const { size, name } = target.files[0];
-
-    if (target) {
-      console.log(size);
-      console.log(name);
-
-      if (size > 1 * 1024 * 1024) {
-        console.log('za duze');
-      } else {
-        console.log('oki');
-      }
-    }
-
-    setFile(target.files[0]);
-  }
+    if (target.files) setFile(target.files[0]);
+  };
 
   return (
     <form
-      onSubmit={handleOnOnSubmit}
+      onSubmit={handleSubmit(processForm)}
+      // action={createFile}
       className="flex w-[90%] flex-col items-center gap-8 sm:w-[80%] lg:w-2/3 xl:w-1/2"
     >
       <section className="w-full">
@@ -191,8 +161,7 @@ export default function Form() {
             type="file"
             className="absolute left-0 top-0 w-full opacity-0"
             id="billImage"
-            accept="image/png, image/jpeg"
-            // {...register('billImage')}
+            {...register('billImage')}
             onChange={handleOnFileChange}
           />
 
