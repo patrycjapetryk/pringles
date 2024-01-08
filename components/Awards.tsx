@@ -4,7 +4,7 @@ export default function Awards() {
   return (
     <section
       id="nagrody"
-      className="flex w-full flex-col items-center bg-100% bg-top-1 bg-no-repeat sm:bg-hero-texture xl:bg-top-2"
+      className="bg-top-mobile xl:bg-top-desktop flex w-full flex-col items-center bg-100% bg-no-repeat sm:bg-hero-texture"
     >
       <div className="flex w-full max-w-[1280px] flex-col items-center">
         <h2 className="my-8 w-2/3 text-center text-3xl sm:my-12 sm:text-4xl md:text-5xl lg:my-[5.1rem] lg:mb-[4.6rem] lg:w-1/2">

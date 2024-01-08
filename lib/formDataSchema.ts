@@ -49,6 +49,9 @@ export const FormDataSchema = z.object({
     .string()
     .refine((value) => /^[1-2]{1}[09]{1}[0-9]{2}$/i.test(value), {
       message: 'Podaj prawidłowy rok urodzenia.',
+    })
+    .refine((value) => Number(value) <= 2006, {
+      message: 'Konkurs dla osób pełnoletnich.',
     }),
   phone: z.string().min(9, { message: 'Podaj pradwidłowy numer telefonu.' }),
   email: z.string().refine((value) => /^\S+@\S+$/i.test(value), {
@@ -63,7 +66,7 @@ export const FormDataSchema = z.object({
       'Podaj kod w formacie 00-000.',
     ),
   city: z.string().min(2, { message: 'Podaj miasto.' }),
-  rules: z.literal(true, {
+  rules: z.literal<boolean>(true, {
     errorMap: () => ({ message: 'Zaakceptuj warunki regulaminu.' }),
   }),
 });

@@ -1,34 +1,94 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
+import { nanoid } from 'nanoid';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { FormDataSchema } from '@/lib/formDataSchema';
+import SubmittedMessage from './SubmittedMessage';
+import Loader from './Loader';
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
 export default function Form() {
   const [file, setFile] = useState<File>();
-  const [data, setData] = useState<Inputs>();
+  const [pending, setPending] = useState(false);
+  const [showSubmittedPage, setShowSubmittedPage] = useState(false);
 
   const {
     register,
     handleSubmit,
     reset,
+    formState,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
+    defaultValues: {
+      message: '',
+      billImage: undefined,
+      name: '',
+      surname: '',
+      birthYear: '',
+      phone: '',
+      email: '',
+      street: '',
+      apartament: '',
+      postalCode: '',
+      city: '',
+      rules: false,
+    },
   });
 
-  // console.log('rendering')
-  // console.log(watch('name'));
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [formState, reset]);
 
-  const processForm: SubmitHandler<Inputs> = (data) => {
-    reset();
-    setData(data);
+  const processForm: SubmitHandler<Inputs> = async (data) => {
+    setPending(true);
+    const uuid = nanoid();
+
+    const fileData = new FormData();
+    fileData.append('uuid', uuid);
+    if (file) fileData.append('file', file);
+
+    const fileUpload = await fetch('/api/uploadImage', {
+      method: 'POST',
+      body: fileData,
+    });
+
+    // const { results } = await fileUpload.json();
+    const claudinaryData = await fileUpload.json();
+
+    const formData = {
+      ...data,
+      uuid,
+    };
+
+    const googleSheetResponse = await fetch('/api/addData', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const googleSheetData = await googleSheetResponse.json();
+
+    if (googleSheetData && claudinaryData) {
+      setPending(false);
+      setShowSubmittedPage(true);
+
+      setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        setFile(undefined);
+        setShowSubmittedPage(false);
+      }, 5000);
+    }
   };
 
   const handleOnFileChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -36,13 +96,7 @@ export default function Form() {
       files: FileList;
     };
 
-    if (target.files) {
-      // const { size, name, type } = target.files[0];
-      // console.log(size);
-      // console.log(target.files[0]);
-
-      setFile(target.files[0]);
-    }
+    if (target.files) setFile(target.files[0]);
   };
 
   return (
@@ -100,7 +154,6 @@ export default function Form() {
           )}
         </div>
       </section>
-
       <section className="grid w-full grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
         <h3 className="text-center text-2xl sm:col-span-2 lg:text-3xl">
           Dane kontaktowe
@@ -181,7 +234,6 @@ export default function Form() {
           )}
         </div>
       </section>
-
       <section className="grid w-full grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
         <h3 className="mt-5 text-center text-2xl sm:col-span-2 lg:text-3xl">
           Adres wysyłkowy
@@ -247,7 +299,6 @@ export default function Form() {
           )}
         </div>
       </section>
-
       <section className="mb-6 mt-4 flex w-full flex-col items-center gap-3 md:flex-row lg:mt-6">
         <div className="relative w-full">
           <div className="relative flex w-full justify-center gap-4">
@@ -288,14 +339,12 @@ export default function Form() {
           )}
         </div>
 
-        <button className="mt-8 w-full bg-white px-4 pb-2 pt-3 text-base uppercase text-pringles-dark-red shadow-[5px_5px_0px_0px] shadow-pringles-dark-red hover:text-black sm:w-44 md:mt-0">
+        <button className="relative mt-8 w-full bg-white px-4 pb-2 pt-3 text-base uppercase text-pringles-dark-red shadow-[5px_5px_0px_0px] shadow-pringles-dark-red hover:text-black sm:w-44 md:mt-0">
           Wyślij
+          {pending && <Loader />}
         </button>
       </section>
-
-      <div className="flex-1 p-8 text-white">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </div>
+      {showSubmittedPage && <SubmittedMessage />}
     </form>
   );
 }

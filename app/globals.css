@@ -2,24 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Change autocomplete styles in WebKit */
-input:-webkit-autofill,
-input:-webkit-autofill:hover {
-  border: 2px solid transparent;
-  -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #cf102d inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
+@layer utilities {
+  /* Change autocomplete styles in WebKit */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover {
+    border: 2px solid transparent;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #cf102d inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 
-input:-webkit-autofill:focus {
-  border: 2px solid white;
-  -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #cf102d inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
+  input:-webkit-autofill:focus {
+    border: 2px solid white;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #cf102d inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 
-.required:focus:placeholder-shown {
-  background-image: url(../public/images/star.svg);
-  background-repeat: no-repeat;
-  background-position: top 5px right 5px;
+  .required:focus:placeholder-shown {
+    background-image: url(../public/images/star.svg);
+    background-repeat: no-repeat;
+    background-position: top 5px right 5px;
+  }
 }

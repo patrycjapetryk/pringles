@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className="scroll-smooth">
       <body
-        className={`${bitte.className} min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-top-1 bg-no-repeat text-white lg:bg-hero-texture xl:bg-top-2`}
+        className={`${bitte.className} lg:bg-top-desktop bg-top-mobile min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-no-repeat text-white lg:bg-hero-texture`}
       >
         <Header />
         {children}
