@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import HamburgerCloseButton from './HamburgerCloseButton';
 
 export default function Navigation({
@@ -32,9 +31,9 @@ export default function Navigation({
           </a>
         </li>
         <li className="uppercase">
-          <Link onClick={handleClick} href="#">
+          <a href="/Regulamin-Zimowa-Zabawa.pdf" target="_blank">
             REGULAMIN
-          </Link>
+          </a>
         </li>
         <li className="uppercase">
           <a onClick={handleClick} href="#udzial">

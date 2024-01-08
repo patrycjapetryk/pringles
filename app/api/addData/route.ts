@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   } = await request.json();
 
   const imageURL = `https://res.cloudinary.com/zzzp/image/upload/${uuid}`;
-  const dateTime = moment().tz('Poland').format('YYYY.MM.DD HH:mm');
+  const dateTime = moment().tz('Poland').format('YYYY-MM-DD HH:mm');
 
   try {
     const res = await sheets.spreadsheets.values.append({
