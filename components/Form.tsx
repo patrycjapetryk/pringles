@@ -76,6 +76,8 @@ export default function Form() {
 
     const googleSheetData = await googleSheetResponse.json();
 
+    console.log(claudinaryData);
+
     if (googleSheetData && claudinaryData) {
       setPending(false);
       setShowSubmittedPage(true);
