@@ -69,14 +69,11 @@ export default function Form() {
       uuid,
     };
 
-    const googleSheetResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/addData`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      },
-    );
+    const googleSheetResponse = await fetch('/api/addData', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
     const googleSheetData = await googleSheetResponse.json();
 
