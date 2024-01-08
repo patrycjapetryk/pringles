@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SyntheticEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { nanoid } from 'nanoid';
@@ -48,62 +48,83 @@ export default function Form() {
     }
   }, [formState, reset]);
 
-  const processForm: SubmitHandler<Inputs> = async (data) => {
-    // setPending(true);
+  async function handleOnOnSubmit(e: SyntheticEvent) {
+    e.preventDefault();
 
     const uuid = nanoid();
 
     if (typeof file === 'undefined') return;
 
-    const fileData = new FormData();
-    fileData.append('uuid', uuid);
-    fileData.append('file', file);
+    const formData = new FormData();
+    formData.append('uuid', uuid);
+    formData.append('file', file);
 
     const response = await fetch('/api/upload', {
       method: 'POST',
-      body: fileData,
+      body: formData,
     });
 
     const { results } = await response.json();
 
     console.log(results);
+  }
 
-    // const formData = {
-    //   ...data,
-    //   uuid,
-    // };
+  // const processForm: SubmitHandler<Inputs> = async (data) => {
+  //   // setPending(true);
 
-    // const googleSheetResponse = await fetch('/api/addData', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // });
+  //   const uuid = nanoid();
 
-    // const googleSheetData = await googleSheetResponse.json();
+  //   if (typeof file === 'undefined') return;
 
-    // const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // });
+  //   const fileData = new FormData();
+  //   fileData.append('uuid', uuid);
+  //   fileData.append('file', file);
 
-    // const addSubscribtionData = await addSubscribtionResponse.json();
+  //   const response = await fetch('/api/upload', {
+  //     method: 'POST',
+  //     body: fileData,
+  //   });
 
-    // console.log(addSubscribtionData);
+  //   const { results } = await response.json();
 
-    // if (googleSheetData) {
-    //   setPending(false);
-    //   setShowSubmittedPage(true);
+  //   console.log(results);
 
-    //   setTimeout(() => {
-    //     if (typeof window !== 'undefined') {
-    //       window.scrollTo({ top: 0, behavior: 'instant' });
-    //     }
-    //     setFile(undefined);
-    //     setShowSubmittedPage(false);
-    //   }, 5000);
-    // }
-  };
+  //   // const formData = {
+  //   //   ...data,
+  //   //   uuid,
+  //   // };
+
+  //   // const googleSheetResponse = await fetch('/api/addData', {
+  //   //   method: 'POST',
+  //   //   headers: { 'Content-Type': 'application/json' },
+  //   //   body: JSON.stringify(formData),
+  //   // });
+
+  //   // const googleSheetData = await googleSheetResponse.json();
+
+  //   // const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
+  //   //   method: 'POST',
+  //   //   headers: { 'Content-Type': 'application/json' },
+  //   //   body: JSON.stringify(formData),
+  //   // });
+
+  //   // const addSubscribtionData = await addSubscribtionResponse.json();
+
+  //   // console.log(addSubscribtionData);
+
+  //   // if (googleSheetData) {
+  //   //   setPending(false);
+  //   //   setShowSubmittedPage(true);
+
+  //   //   setTimeout(() => {
+  //   //     if (typeof window !== 'undefined') {
+  //   //       window.scrollTo({ top: 0, behavior: 'instant' });
+  //   //     }
+  //   //     setFile(undefined);
+  //   //     setShowSubmittedPage(false);
+  //   //   }, 5000);
+  //   // }
+  // };
 
   const handleOnFileChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement & {
@@ -115,7 +136,7 @@ export default function Form() {
 
   return (
     <form
-      onSubmit={handleSubmit(processForm)}
+      onSubmit={handleOnOnSubmit}
       className="flex w-[90%] flex-col items-center gap-8 sm:w-[80%] lg:w-2/3 xl:w-1/2"
     >
       <section className="w-full">
