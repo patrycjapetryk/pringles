@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import moment from 'moment-timezone';
 
 const scopes = [
   'https://www.googleapis.com/auth/drive',
@@ -35,12 +36,7 @@ export async function POST(request: Request) {
   } = await request.json();
 
   const imageURL = `https://res.cloudinary.com/zzzp/image/upload/${uuid}`;
-  const today = new Date();
-  const date =
-    today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-  const time =
-    today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-  const dateTime = date + ' ' + time;
+  const dateTime = moment().tz('Poland').format('YYYY.MM.DD HH:mm');
 
   try {
     const res = await sheets.spreadsheets.values.append({

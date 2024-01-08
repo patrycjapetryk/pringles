@@ -18,10 +18,6 @@ export default function Form() {
   const [pending, setPending] = useState(false);
   const [showSubmittedPage, setShowSubmittedPage] = useState(false);
 
-  console.log('test:');
-  console.log(process.env.TEST_VARIABLE);
-  console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
-
   const {
     register,
     handleSubmit,
@@ -81,7 +77,7 @@ export default function Form() {
 
     const googleSheetData = await googleSheetResponse.json();
 
-    console.log(googleSheetData);
+    // console.log(googleSheetData);
     // console.log(claudinaryData);
 
     if (googleSheetData) {

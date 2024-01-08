@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.3.3",
     "cloudinary": "^1.41.1",
     "googleapis": "^130.0.0",
+    "moment-timezone": "^0.5.44",
     "nanoid": "^5.0.4",
     "next": "14.0.4",
     "next-cloudinary": "^5.18.0",
