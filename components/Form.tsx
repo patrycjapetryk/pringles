@@ -52,17 +52,17 @@ export default function Form() {
     setPending(true);
     const uuid = nanoid();
 
-    const fileData = new FormData();
-    fileData.append('uuid', uuid);
-    if (file) fileData.append('file', file);
+    // const fileData = new FormData();
+    // fileData.append('uuid', uuid);
+    // if (file) fileData.append('file', file);
 
-    const fileUpload = await fetch('/api/uploadImage', {
-      method: 'POST',
-      body: fileData,
-    });
+    // const fileUpload = await fetch('/api/uploadImage', {
+    //   method: 'POST',
+    //   body: fileData,
+    // });
 
     // const { results } = await fileUpload.json();
-    const claudinaryData = await fileUpload.json();
+    // const claudinaryData = await fileUpload.json();
 
     const formData = {
       ...data,
@@ -78,9 +78,9 @@ export default function Form() {
     const googleSheetData = await googleSheetResponse.json();
 
     console.log(googleSheetData);
-    console.log(claudinaryData);
+    // console.log(claudinaryData);
 
-    if (googleSheetData && claudinaryData) {
+    if (googleSheetData) {
       setPending(false);
       setShowSubmittedPage(true);
 
