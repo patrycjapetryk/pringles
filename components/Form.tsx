@@ -126,13 +126,26 @@ export default function Form() {
   //   // }
   // };
 
-  const handleOnFileChange = (e: React.FormEvent<HTMLInputElement>) => {
+  function handleOnFileChange(e: React.FormEvent<HTMLInputElement>) {
     const target = e.target as HTMLInputElement & {
       files: FileList;
     };
 
-    if (target.files) setFile(target.files[0]);
-  };
+    const { size, name } = target.files[0];
+
+    if (target) {
+      console.log(size);
+      console.log(name);
+
+      if (size > 1 * 1024 * 1024) {
+        console.log('za duze');
+      } else {
+        console.log('oki');
+      }
+    }
+
+    setFile(target.files[0]);
+  }
 
   return (
     <form
