@@ -49,7 +49,7 @@ export default function Form() {
   }, [formState, reset]);
 
   const processForm: SubmitHandler<Inputs> = async (data) => {
-    setPending(true);
+    // setPending(true);
 
     const uuid = nanoid();
 
@@ -68,43 +68,41 @@ export default function Form() {
 
     console.log(results);
 
-    const formData = {
-      ...data,
-      uuid,
-    };
+    // const formData = {
+    //   ...data,
+    //   uuid,
+    // };
 
-    const googleSheetResponse = await fetch('/api/addData', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    // const googleSheetResponse = await fetch('/api/addData', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(formData),
+    // });
 
-    const googleSheetData = await googleSheetResponse.json();
+    // const googleSheetData = await googleSheetResponse.json();
 
-    const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    // const addSubscribtionResponse = await fetch('/api/addSubscribtion', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(formData),
+    // });
 
-    const addSubscribtionData = await addSubscribtionResponse.json();
+    // const addSubscribtionData = await addSubscribtionResponse.json();
 
-    console.log(addSubscribtionData);
+    // console.log(addSubscribtionData);
 
-    // console.log(claudinaryData);
+    // if (googleSheetData) {
+    //   setPending(false);
+    //   setShowSubmittedPage(true);
 
-    if (googleSheetData) {
-      setPending(false);
-      setShowSubmittedPage(true);
-
-      setTimeout(() => {
-        if (typeof window !== 'undefined') {
-          window.scrollTo({ top: 0, behavior: 'instant' });
-        }
-        setFile(undefined);
-        setShowSubmittedPage(false);
-      }, 5000);
-    }
+    //   setTimeout(() => {
+    //     if (typeof window !== 'undefined') {
+    //       window.scrollTo({ top: 0, behavior: 'instant' });
+    //     }
+    //     setFile(undefined);
+    //     setShowSubmittedPage(false);
+    //   }, 5000);
+    // }
   };
 
   const handleOnFileChange = (e: React.FormEvent<HTMLInputElement>) => {
