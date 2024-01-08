@@ -52,16 +52,18 @@ export default function Form() {
     setPending(true);
     const uuid = nanoid();
 
-    // const fileData = new FormData();
-    // fileData.append('uuid', uuid);
-    // if (file) fileData.append('file', file);
+    const fileData = new FormData();
+    if (uuid) fileData.append('uuid', uuid);
+    if (file) fileData.append('file', file);
 
-    // const fileUpload = await fetch('/api/uploadImage', {
-    //   method: 'POST',
-    //   body: fileData,
-    // });
+    const response = await fetch('/api/uploadImage', {
+      method: 'POST',
+      body: fileData,
+    });
 
-    // const claudinaryData = await fileUpload.json();
+    const { results } = await response.json();
+
+    console.log(results);
 
     const formData = {
       ...data,
