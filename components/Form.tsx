@@ -20,6 +20,7 @@ export default function Form() {
 
   console.log('test:');
   console.log(process.env.TEST_VARIABLE);
+  console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
 
   const {
     register,
