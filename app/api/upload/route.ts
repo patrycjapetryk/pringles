@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-// import { revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       )
       .end(buffer);
   });
-  // revalidatePath('/');
+  revalidatePath('/');
   // return Response.json({ results });
   return new Response(JSON.stringify({ results }));
 }
