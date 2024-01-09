@@ -10,30 +10,48 @@ cloudinary.config({
 });
 
 export async function createFile(formData: FormData) {
-  const file = (await formData.get('billImage')) as File;
-  const uuid = (await formData.get('uuid')) as string;
+  const file = formData.get('billImage') as File;
+  const uuid = formData.get('uuid') as string;
   const fileBuffer = await file.arrayBuffer();
   const mime = file.type;
   const encoding = 'base64';
   const base64Data = Buffer.from(fileBuffer).toString('base64');
   const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
 
+  // await new Promise((resolve, reject) => {
+  //   cloudinary.uploader
+  //     .upload_stream(
+  //       {
+  //         tags: ['server-test'],
+  //         public_id: uuid,
+  //       },
+  //       function (error, result) {
+  //         if (error) {
+  //           reject(error);
+  //           return;
+  //         }
+  //         resolve(result);
+  //       },
+  //     )
+  //     .end(fileUri);
+  // });
+
   await new Promise((resolve, reject) => {
     cloudinary.uploader
-      .upload_stream(
-        {
-          tags: ['server-test'],
-          public_id: uuid,
-        },
-        function (error, result) {
-          if (error) {
-            reject(error);
-            return;
-          }
-          resolve(result);
-        },
-      )
-      .end(fileUri);
+      .upload(fileUri, {
+        invalidate: true,
+        tags: ['server-test'],
+        public_id: uuid,
+      })
+      .then((result) => {
+        console.log(result);
+        resolve(result);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
   });
+
   revalidatePath('/');
 }
