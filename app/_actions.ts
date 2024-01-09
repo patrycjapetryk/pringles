@@ -11,6 +11,7 @@ cloudinary.config({
 
 export async function createFile(formData: FormData) {
   const file = formData.get('billImage') as File;
+  const uuid = formData.get('uuid') as string;
   const arrayBuffer = await file.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
 
@@ -18,7 +19,8 @@ export async function createFile(formData: FormData) {
     cloudinary.uploader
       .upload_stream(
         {
-          tags: ['nextjs-server-actions-upload-sneakers'],
+          tags: ['server-test'],
+          public_id: uuid,
         },
         function (error, result) {
           if (error) {

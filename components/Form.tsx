@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { FormDataSchema } from '@/lib/formDataSchema';
-import { createFile } from '@/app/actions';
+import { createFile } from '@/app/_actions';
 import SubmittedMessage from './SubmittedMessage';
 import Loader from './Loader';
 
@@ -58,16 +58,24 @@ export default function Form() {
     const fileData = new FormData();
     fileData.append('uuid', uuid);
     const formFile = data?.billImage?.[0] as File;
-    fileData.append('formFile', formFile);
+    fileData.append('billImage', formFile);
+    const result = await createFile(fileData);
 
-    const fileUpload = await fetch('/api/upload', {
-      method: 'POST',
-      body: fileData,
-    });
+    console.log(result);
 
-    const cloudinaryData = await fileUpload.json();
+    // const fileData = new FormData();
+    // fileData.append('uuid', uuid);
+    // const formFile = data?.billImage?.[0] as File;
+    // fileData.append('formFile', formFile);
 
-    console.log(cloudinaryData);
+    // const fileUpload = await fetch('/api/upload', {
+    //   method: 'POST',
+    //   body: fileData,
+    // });
+
+    // const cloudinaryData = await fileUpload.json();
+
+    // console.log(cloudinaryData);
 
     const formData = {
       ...data,
