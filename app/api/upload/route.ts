@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+// import { revalidatePath } from 'next/cache';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -9,7 +10,7 @@ cloudinary.config({
 export async function POST(request: Request) {
   const formData = await request.formData();
   const uuid = formData.get('uuid') as string;
-  const file = formData.get('file') as File;
+  const file = formData.get('formFile') as File;
   const arrayBuffer = await file.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
 
@@ -17,8 +18,7 @@ export async function POST(request: Request) {
     cloudinary.uploader
       .upload_stream(
         {
-          tags: ['pringles-konkurs'],
-          public_id: uuid,
+          tags: ['nextjs-server-actions-upload-sneakers'],
         },
         function (error, result) {
           if (error) {
@@ -30,6 +30,7 @@ export async function POST(request: Request) {
       )
       .end(buffer);
   });
-
-  return Response.json({ results });
+  // revalidatePath('/');
+  // return Response.json({ results });
+  return new Response(JSON.stringify({ results }));
 }

@@ -58,7 +58,7 @@ export default function Form() {
     const fileData = new FormData();
     fileData.append('uuid', uuid);
     const formFile = data?.billImage?.[0] as File;
-    if (file) fileData.append('file', formFile);
+    fileData.append('formFile', formFile);
 
     const fileUpload = await fetch('/api/upload', {
       method: 'POST',
