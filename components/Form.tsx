@@ -53,29 +53,11 @@ export default function Form() {
     setPending(true);
     const uuid = nanoid();
 
-    console.log(data?.billImage?.[0]);
-
     const fileData = new FormData();
     fileData.append('uuid', uuid);
     const formFile = data?.billImage?.[0] as File;
     fileData.append('billImage', formFile);
-    const result = await createFile(fileData);
-
-    console.log(result);
-
-    // const fileData = new FormData();
-    // fileData.append('uuid', uuid);
-    // const formFile = data?.billImage?.[0] as File;
-    // fileData.append('formFile', formFile);
-
-    // const fileUpload = await fetch('/api/upload', {
-    //   method: 'POST',
-    //   body: fileData,
-    // });
-
-    // const cloudinaryData = await fileUpload.json();
-
-    // console.log(cloudinaryData);
+    const claudinaryData = await createFile(fileData);
 
     const formData = {
       ...data,
@@ -98,9 +80,9 @@ export default function Form() {
 
     const addSubscribtionData = await addSubscribtionResponse.json();
 
-    console.log(addSubscribtionData);
-
+    // console.log(addSubscribtionData);
     // console.log(claudinaryData);
+    // console.log(googleSheetData);
 
     if (googleSheetData) {
       setPending(false);
@@ -127,7 +109,6 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      // action={createFile}
       className="flex w-[90%] flex-col items-center gap-8 sm:w-[80%] lg:w-2/3 xl:w-1/2"
     >
       <section className="w-full">

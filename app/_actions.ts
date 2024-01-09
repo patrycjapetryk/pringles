@@ -18,29 +18,11 @@ export async function createFile(formData: FormData) {
   const base64Data = Buffer.from(fileBuffer).toString('base64');
   const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
 
-  // await new Promise((resolve, reject) => {
-  //   cloudinary.uploader
-  //     .upload_stream(
-  //       {
-  //         tags: ['server-test'],
-  //         public_id: uuid,
-  //       },
-  //       function (error, result) {
-  //         if (error) {
-  //           reject(error);
-  //           return;
-  //         }
-  //         resolve(result);
-  //       },
-  //     )
-  //     .end(fileUri);
-  // });
-
   await new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload(fileUri, {
         invalidate: true,
-        tags: ['server-test'],
+        tags: ['konkurs-pringles'],
         public_id: uuid,
       })
       .then((result) => {
