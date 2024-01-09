@@ -10,10 +10,13 @@ cloudinary.config({
 });
 
 export async function createFile(formData: FormData) {
-  const file = formData.get('billImage') as File;
-  const uuid = formData.get('uuid') as string;
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = new Uint8Array(arrayBuffer);
+  const file = (await formData.get('billImage')) as File;
+  const uuid = (await formData.get('uuid')) as string;
+  const fileBuffer = await file.arrayBuffer();
+  const mime = file.type;
+  const encoding = 'base64';
+  const base64Data = Buffer.from(fileBuffer).toString('base64');
+  const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
 
   await new Promise((resolve, reject) => {
     cloudinary.uploader
@@ -30,7 +33,7 @@ export async function createFile(formData: FormData) {
           resolve(result);
         },
       )
-      .end(buffer);
+      .end(fileUri);
   });
   revalidatePath('/');
 }
