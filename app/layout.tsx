@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 import Header from '@/components/Header';
 import './globals.css';
@@ -21,11 +22,12 @@ export default function RootLayout({
   return (
     <html lang="pl" className="scroll-smooth">
       <body
-        className={`${bitte.className} lg:bg-top-desktop bg-top-mobile min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-no-repeat text-white lg:bg-hero-texture`}
+        className={`${bitte.className} min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-top-mobile bg-no-repeat text-white lg:bg-hero-texture lg:bg-top-desktop`}
       >
         <Header />
         {children}
       </body>
+      <GoogleTagManager gtmId="AW-11467556284" />
     </html>
   );
 }
