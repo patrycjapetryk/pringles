@@ -33,18 +33,11 @@ export const FormDataSchema = z.object({
   name: z
     .string()
     .min(2, { message: 'Podaj imię.' })
-    .max(50, { message: 'Max. 50 znaków.' })
-    .refine(
-      (value) => /^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/.test(value),
-      'Podaj prawidłowe imię.',
-    ),
+    .max(50, { message: 'Max. 50 znaków.' }),
   surname: z
     .string()
     .min(2, { message: 'Podaj nazwisko.' })
-    .max(50, { message: 'Max. 50 znaków.' })
-    .refine((value) => /^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/.test(value), {
-      message: 'Podaj prawidłowe nazwisko.',
-    }),
+    .max(50, { message: 'Max. 50 znaków.' }),
   birthYear: z
     .string()
     .refine((value) => /^[1-2]{1}[09]{1}[0-9]{2}$/i.test(value), {
