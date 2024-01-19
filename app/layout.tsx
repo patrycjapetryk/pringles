@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import { GoogleTagManager } from '@next/third-parties/google';
 
 import Header from '@/components/Header';
+import TiktokPixel from '@/components/TiktokPixel';
 import './globals.css';
 
 const bitte = localFont({ src: './bitte.woff2' });
@@ -21,13 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className="scroll-smooth">
+      <head>
+        <GoogleTagManager gtmId="AW-11467556284" />
+        <TiktokPixel />
+      </head>
       <body
         className={`${bitte.className} min-h-screen min-w-[320px] bg-pringles-red bg-hero-texture-mobile bg-100% bg-top-mobile bg-no-repeat text-white lg:bg-hero-texture lg:bg-top-desktop`}
       >
         <Header />
         {children}
       </body>
-      <GoogleTagManager gtmId="AW-11467556284" />
     </html>
   );
 }
