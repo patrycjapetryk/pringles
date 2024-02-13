@@ -1,3 +1,16 @@
+
+![pringles](https://github.com/patrycjapetryk/pringles/assets/51820512/388f9850-ab73-468a-8bf6-04e7b7244042)
+
+# Zimowa zabawa z Pringles
+
+Landing Page for Showroom.pl, an online fashion marketplace. It was built using Vanilla JS, SCSS, and Vite.
+
+- **Online version**: [zimowazabawazpringles.pl](https://www.zimowazabawazpringles.pl/)
+
+&nbsp;
+
+&nbsp;
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
