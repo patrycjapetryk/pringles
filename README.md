@@ -3,11 +3,13 @@
 
 # Zimowa zabawa z Pringles
 
-Landing Page for Showroom.pl, an online fashion marketplace. It was built using Vanilla JS, SCSS, and Vite.
+Competition platform for Pringles. It was built using Next.js and Tailwind CSS.
 
 - **Online version**: [zimowazabawazpringles.pl](https://www.zimowazabawazpringles.pl/)
 
 &nbsp;
+
+https://github.com/patrycjapetryk/pringles/assets/51820512/4cfac84d-a743-410e-a2cf-67174da5d106
 
 &nbsp;
 
