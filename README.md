@@ -3,7 +3,7 @@
 
 # Zimowa zabawa z Pringles
 
-Competition platform for Pringles. It was built using Next.js and Tailwind CSS.
+Competition platform for Pringles. It was built using Next.js, Typescript and Tailwind CSS.
 
 - **Online version**: [zimowazabawazpringles.pl](https://www.zimowazabawazpringles.pl/)
 
